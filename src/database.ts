@@ -5,6 +5,13 @@ import { logger } from "./main";
 import { join } from "path";
 
 
+interface Message {
+    id: number;
+    message: string;
+    phone_number: string;
+    created_at: string;
+}
+
 export async function database() {
     return sqlite.open({
         filename: join(process.cwd(), config.path),
@@ -12,63 +19,44 @@ export async function database() {
     });
 };
 
-/**
- * Ensures the database is setup correctly.
- **/
 export async function ensureSchema() {
     logger.info("Ensuring database compatibility...");
     const db = await database();
     
-    // Users
-    logger.info("Ensuring database compatibility: users...");
+    // messages
+    logger.info("Ensuring database compatibility: messages...");
     await db.run(
-        `CREATE TABLE IF NOT EXISTS users (
+        `CREATE TABLE IF NOT EXISTS messages (
             id INTEGER PRIMARY KEY, 
-            username TEXT, 
-            admin INTEGER, 
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
-    `);
-
-    // User favorites
-    logger.info("Ensuring database compatibility: favorites...");
-    await db.run(
-        `CREATE TABLE IF NOT EXISTS favorites (
-            user_id INTEGER, 
-            place_id INTEGER, 
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
-    `);
-    
-    // Feedback submissions
-    logger.info("Ensuring database compatibility: feedback...");
-    await db.run(
-        `CREATE TABLE IF NOT EXISTS feedback (
-            user_id INTEGER, 
-            place_id INTEGER,
-            overall_satisfaction INTEGER,
-            sensations_temperature INTEGER,
-            sensations_air_quality INTEGER,
-            preferences_temperature INTEGER,
-            preferences_light INTEGER,
-            preferences_sound INTEGER,
-            clothing_level INTEGER,
-            activity_type INTEGER,    
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
-    `);
-
-    // Tokens
-    logger.info("Ensuring database compatibility: tokens...");
-    await db.run(
-        `CREATE TABLE IF NOT EXISTS tokens (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            token TEXT,
+            message TEXT,
+            phone_number TEXT, 
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
     `);
 
     logger.info("Ensuring database compatibility: COMPLETE!");
 
-    const users = await db.get("SELECT * FROM USERS");
-    logger.info(JSON.stringify(users));
+    const messages = await db.all<Message[]>("SELECT * FROM messages");
+    if (messages) {
+        logger.info(`${messages.length} stored and ready!`);
+    } else {
+        logger.info("No messages found!");
+    }
     
-
 };
+
+
+export async function addMessage(message: string, phoneNumber: string) {
+    const db = await database();
+    await db.run(
+        `INSERT INTO messages (message, phone_number) VALUES (?, ?)`,
+        message, phoneNumber
+    );
+}
+
+export async function getRandomMessage() {
+    const db = await database();
+    const message = await db.get<Message>(
+        `SELECT * FROM messages ORDER BY RANDOM() LIMIT 1`
+    );
+    return message;
+}
