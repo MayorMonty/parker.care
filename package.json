@@ -1,0 +1,19 @@
+{
+  "name": "parkerlove",
+  "version": "0.0.0",
+  "description": "Parker Love",
+  "main": "out/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brendan McGuire",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sqlite": "^4.0.23",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13"
+  }
+}
