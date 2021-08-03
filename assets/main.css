@@ -99,6 +99,7 @@ body {
 body {
   font-family: "Georama", sans-serif;
   font-weight: 400;
+  overflow: hidden;
 }
 body {
   font-size: 14px;

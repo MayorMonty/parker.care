@@ -20,7 +20,7 @@ export { logger };
 
 
 const app = express();
-app.listen(3000, async () => {
+app.listen(1337, async () => {
     logger.info("Listening for new connections!")
 
     await database.ensureSchema();

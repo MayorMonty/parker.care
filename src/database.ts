@@ -33,6 +33,14 @@ export async function ensureSchema() {
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
     `);
 
+    // users by phone number
+    logger.info("Ensuring database compatibility: users...");
+    await db.run(
+        `CREATE TABLE IF NOT EXISTS users (
+            phone_number TEXT PRIMARY KEY,
+            name TEXT);
+    `);
+
     logger.info("Ensuring database compatibility: COMPLETE!");
 
     const messages = await db.all<Message[]>("SELECT * FROM messages");
@@ -50,6 +58,14 @@ export async function addMessage(message: string, phoneNumber: string) {
     await db.run(
         `INSERT INTO messages (message, phone_number) VALUES (?, ?)`,
         message, phoneNumber
+    );
+}
+
+export async function addUser(phoneNumber: string, name: string) {
+        const db = await database();
+    await db.run(
+        `INSERT INTO users (phone_number, name) VALUES (?, ?)`,
+        phoneNumber, name
     );
 }
 
