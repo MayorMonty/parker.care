@@ -1,0 +1,231 @@
+:root {
+  --color-black: #25252d;
+  --color-gray: #f7f7f8;
+  --color-white: #ffffff;
+  --color-green: #66ffbe;
+  --color-green-dark: #33ffa8;
+  --color-yellow: #fff266;
+  --color-yellow-dark: #ffee33;
+  --color-orange: #ffb966;
+  --color-orange-dark: #ffad4c;
+  --color-blue: #80e0ff;
+  --color-blue-dark: #4cd4ff;
+  --color-purple: #9980ff;
+  --color-purple-dark: #8f73ff;
+  --color-pink: #d680ff;
+  --color-pink-dark: #d273ff;
+  --color-red: #ff7fb5;
+  --color-red-dark: #ff73ae;
+  --color-wtf: #ffc233;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeinup {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeindown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeinleft {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeinright {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  scroll-behavior: smooth;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "Georama", sans-serif;
+  font-weight: 400;
+}
+body {
+  font-size: 14px;
+}
+@media screen and (min-width: 379px) {
+  body {
+    font-size: calc(14px + 8 * ((100vw - 379px) / 900));
+  }
+}
+@media screen and (min-width: 1279px) {
+  body {
+    font-size: 22px;
+  }
+}
+body {
+  line-height: 22px;
+}
+@media screen and (min-width: 379px) {
+  body {
+    line-height: calc(22px + 13 * ((100vw - 379px) / 900));
+  }
+}
+@media screen and (min-width: 1279px) {
+  body {
+    line-height: 35px;
+  }
+}
+@media (min-width: 767px) {
+  body {
+    letter-spacing: -0.02em;
+  }
+}
+body a {
+  text-decoration: none;
+}
+
+#intro {
+  animation-name: none;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
+  animation-delay: 0s;
+  animation-timing-function: ease-in-out;
+}
+#intro .inner {
+  padding-top: 104px;
+}
+@media screen and (min-width: 379px) {
+  #intro .inner {
+    padding-top: calc(104px + 32 * ((100vw - 379px) / 900));
+  }
+}
+@media screen and (min-width: 1279px) {
+  #intro .inner {
+    padding-top: 136px;
+  }
+}
+#intro .inner {
+  padding-right: 20px;
+}
+@media screen and (min-width: 379px) {
+  #intro .inner {
+    padding-right: calc(20px + 20 * ((100vw - 379px) / 900));
+  }
+}
+@media screen and (min-width: 1279px) {
+  #intro .inner {
+    padding-right: 40px;
+  }
+}
+#intro .inner {
+  padding-left: 20px;
+}
+@media screen and (min-width: 379px) {
+  #intro .inner {
+    padding-left: calc(20px + 20 * ((100vw - 379px) / 900));
+  }
+}
+@media screen and (min-width: 1279px) {
+  #intro .inner {
+    padding-left: 40px;
+  }
+}
+#intro .inner {
+  padding-bottom: 64px;
+}
+@media screen and (min-width: 379px) {
+  #intro .inner {
+    padding-bottom: calc(64px + 64 * ((100vw - 379px) / 900));
+  }
+}
+@media screen and (min-width: 1279px) {
+  #intro .inner {
+    padding-bottom: 128px;
+  }
+}
+#intro h1 {
+  font-family: 'Georama', sans-serif;
+  letter-spacing: -0.04em;
+}
+#intro h1 {
+  font-size: 52px;
+}
+@media screen and (min-width: 379px) {
+  #intro h1 {
+    font-size: calc(52px + 52 * ((100vw - 379px) / 900));
+  }
+}
+@media screen and (min-width: 1279px) {
+  #intro h1 {
+    font-size: 104px;
+    max-width: 55vw;
+  }
+}
+#intro h1 {
+  line-height: 63px;
+}
+@media screen and (min-width: 379px) {
+  #intro h1 {
+    line-height: calc(63px + 51 * ((100vw - 379px) / 900));
+  }
+}
+@media screen and (min-width: 1279px) {
+  #intro h1 {
+    line-height: 114px;
+  }
+}
+#intro p {
+  margin-top: 16px;
+  font-size: 1.3rem;
+}
