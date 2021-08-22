@@ -133,7 +133,10 @@ body {
   }
 }
 body a {
-  text-decoration: none;
+  text-decoration: underline;
+  text-transform: uppercase;
+  color: unset;
+  font-weight: bold;
 }
 
 #intro {
