@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>parker.care — Submit</title>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="fetch" href="/message.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Georama&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section id="intro">
+      <div class="inner">
+        <div class="content">
+            <form action="/submit" method="POST">
+                <h2>Submit your happygram for Parker!</h2>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea
+                name="message"
+                id="message"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name"/>
+            </div>
+            <div class="form-group">
+                <input type="submit">
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script>
+      const message = document.getElementById("message");
+      const author = document.getElementById("author");
+
+      const colors = [
+        ["--color-black", "--color-white"],
+        ["--color-gray", "--color-black"],
+        ["--color-white", "--color-black"],
+        ["--color-green", "--color-black"],
+        ["--color-green-dark", "--color-black"],
+        ["--color-yellow", "--color-black"],
+        ["--color-orange", "--color-black"],
+        ["--color-orange-dark", "--color-black"],
+        ["--color-blue", "--color-black"],
+        ["--color-blue-dark", "--color-black"],
+        ["--color-purple", "--color-black"],
+        ["--color-purple-dark", "--color-black"],
+        ["--color-pink", "--color-black"],
+        ["--color-pink-dark", "--color-black"],
+        ["--color-red", "--color-black"],
+        ["--color-red-dark", "--color-black"],
+        ["--color-wtf", "--color-black"],
+      ];
+
+      const index = Math.floor(Math.random() * colors.length);
+
+      const [color, text] = colors[index];
+
+      document.body.style.backgroundColor = `var(${color})`;
+      document.body.style.color = `var(${text})`;
+
+      const animations = [
+        "fadein",
+        "fadeinup",
+        "fadeindown",
+        "fadeinleft",
+        "fadeinright",
+      ];
+
+      const intro = document.getElementById("intro");
+      intro.style.animationName =
+        animations[Math.floor(Math.random() * animations.length)];
+    </script>
+  </body>
+</html>
