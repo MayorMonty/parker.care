@@ -1,4 +1,3 @@
-import sms from "./sms"
 import app, { logger } from "./main"
 import winston from "winston"
 import expressWinston from "express-winston"
@@ -11,9 +10,6 @@ import { getRandomMessage } from "./database"
 app.use(expressWinston.logger({
   winstonInstance: logger,
 }));
-
-// Routers
-app.use(sms);
 
 // Dynamic Message Insertion
 app.get("/message.json", async (req, res, next) => {

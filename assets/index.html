@@ -32,7 +32,7 @@
         .then(response => response.json())
         .then(json => {
           message.innerText = json.message;
-          author.innerText = json.author;
+          author.innerText = json.phone_number;
         });
 
       const colors = [

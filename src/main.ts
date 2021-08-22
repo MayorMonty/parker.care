@@ -25,10 +25,6 @@ app.listen(1337, async () => {
 
     await database.ensureSchema();
 
-    await database.addMessage("We love you parker!", "864-520-9321");
-    await database.addMessage("Parker is very pog!", "864-520-9321");
-    await database.addMessage("I hate you NOT!", "864-520-9321");
-
 
     const message = await database.getRandomMessage();
     if (message) {
