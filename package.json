@@ -2,7 +2,7 @@
   "name": "parkerlove",
   "version": "0.0.0",
   "description": "Parker Love",
-  "main": "out/main.js",
+  "main": "out/src/main.js",
   "scripts": {
     "run": "node out/src/main.js",
     "build": "tsc"
