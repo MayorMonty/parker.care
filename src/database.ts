@@ -10,6 +10,7 @@ interface Message {
     message: string;
     phone_number: string;
     created_at: string;
+    reads: number;
 }
 
 export async function database() {
@@ -30,7 +31,8 @@ export async function ensureSchema() {
             id INTEGER PRIMARY KEY, 
             message TEXT,
             phone_number TEXT, 
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            reads INTEGER DEFAULT 0);
     `);
 
     // users by phone number
@@ -72,7 +74,20 @@ export async function addUser(phoneNumber: string, name: string) {
 export async function getRandomMessage() {
     const db = await database();
     const message = await db.get<Message>(
-        `SELECT * FROM messages ORDER BY RANDOM() LIMIT 1`
+        `SELECT * FROM (SELECT * FROM messages ORDER BY reads ASC LIMIT 5) ORDER BY RANDOM() LIMIT 1`
     );
+
+    if (message) {
+
+        const newReads = message.reads ? message.reads + 1 : 1;
+        await db.run(
+            `UPDATE messages SET reads = ? WHERE id = ?`,
+            newReads, message.id
+        );
+
+        return message;
+
+    };
+
     return message;
 }
