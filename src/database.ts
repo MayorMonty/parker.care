@@ -74,7 +74,7 @@ export async function addUser(phoneNumber: string, name: string) {
 export async function getRandomMessage() {
     const db = await database();
     const message = await db.get<Message>(
-        `SELECT * FROM (SELECT * FROM messages ORDER BY reads ASC LIMIT 5) ORDER BY RANDOM() LIMIT 1`
+        `SELECT * FROM (SELECT * FROM messages ORDER BY reads ASC LIMIT 10 OFFSET 5) ORDER BY RANDOM() LIMIT 1`
     );
 
     if (message) {
